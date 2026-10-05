@@ -1,0 +1,95 @@
+{
+  "project": "EduPredict AI",
+  "trained_at": "2026-10-04T18:31:12",
+  "dataset": "data/student_data.csv (synthetic, 500 records)",
+  "random_seed": 42,
+  "train_test_split": "80% train / 20% test (stratified on category)",
+  "features": [
+    "attendance_pct",
+    "study_hours_per_week",
+    "assignment_avg",
+    "internal_marks",
+    "prev_exam_score",
+    "assignment_completion",
+    "participation_level",
+    "num_backlogs"
+  ],
+  "classifier": {
+    "algorithm": "DecisionTreeClassifier",
+    "max_depth": 6,
+    "min_samples_split": 10,
+    "min_samples_leaf": 5,
+    "metrics": {
+      "accuracy": 0.76,
+      "precision_weighted": 0.778,
+      "recall_weighted": 0.76,
+      "f1_weighted": 0.7598,
+      "confusion_matrix": [
+        [
+          25,
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          12,
+          7,
+          0
+        ],
+        [
+          4,
+          3,
+          22,
+          0
+        ],
+        [
+          6,
+          0,
+          1,
+          17
+        ]
+      ],
+      "classification_report": "                   precision    recall  f1-score   support\n\n          Average       0.71      0.89      0.79        28\n        Excellent       0.80      0.63      0.71        19\n             Good       0.69      0.76      0.72        29\nNeeds Improvement       0.94      0.71      0.81        24\n\n         accuracy                           0.76       100\n        macro avg       0.79      0.75      0.76       100\n     weighted avg       0.78      0.76      0.76       100\n"
+    },
+    "feature_importances": {
+      "attendance_pct": 0.2325,
+      "study_hours_per_week": 0.3481,
+      "assignment_avg": 0.0382,
+      "internal_marks": 0.2163,
+      "prev_exam_score": 0.0378,
+      "assignment_completion": 0.0446,
+      "participation_level": 0.0066,
+      "num_backlogs": 0.0759
+    }
+  },
+  "regressor": {
+    "algorithm": "DecisionTreeRegressor",
+    "max_depth": 6,
+    "min_samples_split": 10,
+    "min_samples_leaf": 5,
+    "metrics": {
+      "mae": 4.0588,
+      "mse": 26.8795,
+      "rmse": 5.1845,
+      "r2": 0.9129
+    },
+    "feature_importances": {
+      "attendance_pct": 0.0795,
+      "study_hours_per_week": 0.693,
+      "assignment_avg": 0.1553,
+      "internal_marks": 0.0581,
+      "prev_exam_score": 0.0004,
+      "assignment_completion": 0.0015,
+      "participation_level": 0.0,
+      "num_backlogs": 0.0123
+    }
+  },
+  "categories": [
+    "Needs Improvement",
+    "Average",
+    "Good",
+    "Excellent"
+  ],
+  "note": "All models trained on SYNTHETIC data only. Not intended for real academic evaluation."
+}

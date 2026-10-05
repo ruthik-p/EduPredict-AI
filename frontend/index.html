@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduPredict AI — Student Performance Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════
+       BACKGROUND GRID DECORATION
+  ═══════════════════════════════════════════════════ -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="nav-inner">
+      <button class="nav-brand" data-nav="home" aria-label="EduPredict AI home">
+        <span class="nav-brand-icon" aria-hidden="true">◈</span>
+        EduPredict <span class="nav-brand-accent">AI</span>
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><button class="nav-link" data-nav="home">Home</button></li>
+        <li><button class="nav-link" data-nav="predict">Predict</button></li>
+        <li><button class="nav-link" data-nav="how-it-works">How It Works</button></li>
+        <li><button class="nav-link" data-nav="about">About</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       APP VIEWPORT — all sections live here
+  ═══════════════════════════════════════════════════ -->
+  <div id="app-viewport">
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO / HOME SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section id="home" class="page-section hero-section" data-page="home">
+    <div class="container hero-inner">
+      <div class="hero-content reveal">
+        <div class="hero-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          IBM SkillsBuild · AICTE Internship Project
+        </div>
+        <h1 class="hero-title">
+          EduPredict <span class="gradient-text">AI</span>
+        </h1>
+        <p class="hero-subtitle">
+          Intelligent Student Performance Prediction &amp; Personalized Improvement System
+        </p>
+        <p class="hero-desc">
+          An AI-powered student performance prediction system that uses supervised machine
+          learning to estimate academic performance and provide personalized improvement
+          recommendations.
+        </p>
+        <div class="tech-pills">
+          <span class="pill">Python</span>
+          <span class="pill">scikit-learn</span>
+          <span class="pill">Decision Trees</span>
+          <span class="pill">Flask API</span>
+          <span class="pill">Supervised Learning</span>
+        </div>
+        <button class="btn btn-primary hero-cta" id="hero-cta-btn" data-nav="predict">
+          <span class="btn-icon" aria-hidden="true">⚡</span>
+          Start Prediction
+        </button>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-ring visual-ring-1"></div>
+        <div class="visual-ring visual-ring-2"></div>
+        <div class="visual-ring visual-ring-3"></div>
+        <div class="visual-core">
+          <div class="visual-core-inner">AI</div>
+        </div>
+        <div class="visual-node node-1"></div>
+        <div class="visual-node node-2"></div>
+        <div class="visual-node node-3"></div>
+        <div class="visual-node node-4"></div>
+        <div class="visual-node node-5"></div>
+        <div class="visual-node node-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       PREDICTION SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section id="predict" class="page-section section predict-section" data-page="predict">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <div class="section-tag">Machine Learning</div>
+        <h2 class="section-title">Predict Student Performance</h2>
+        <p class="section-desc">
+          Enter the student's academic details to generate an ML-based performance prediction
+          using trained Decision Tree models.
+        </p>
+      </div>
+
+      <div class="predict-grid">
+
+        <!-- ─── Input Form ──────────────────────────────── -->
+        <section class="glass-card form-card reveal" aria-label="Student input form">
+          <div class="card-header">
+            <div class="card-header-icon" aria-hidden="true">📋</div>
+            <div>
+              <h3 class="card-title">Student Academic Profile</h3>
+              <p class="card-subtitle">All 8 fields are required for prediction.</p>
+            </div>
+          </div>
+
+          <form id="predict-form" novalidate>
+
+            <!-- Row 1 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="attendance_pct">Attendance Percentage</label>
+                <span class="field-hint">Percentage of classes attended (0–100)</span>
+                <input type="number" id="attendance_pct" name="attendance_pct"
+                       min="0" max="100" step="0.1" placeholder="e.g. 85"
+                       required aria-describedby="attendance_pct-hint" />
+              </div>
+              <div class="form-group">
+                <label for="study_hours_per_week">Study Hours Per Week</label>
+                <span class="field-hint">Average hours studied per week (0–35)</span>
+                <input type="number" id="study_hours_per_week" name="study_hours_per_week"
+                       min="0" max="35" step="0.5" placeholder="e.g. 18"
+                       required />
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="assignment_avg">Assignment Average Score</label>
+                <span class="field-hint">Average marks across assignments (0–100)</span>
+                <input type="number" id="assignment_avg" name="assignment_avg"
+                       min="0" max="100" step="0.1" placeholder="e.g. 72"
+                       required />
+              </div>
+              <div class="form-group">
+                <label for="internal_marks">Internal Assessment Marks</label>
+                <span class="field-hint">Marks scored in internal assessments (0–50)</span>
+                <input type="number" id="internal_marks" name="internal_marks"
+                       min="0" max="50" step="0.5" placeholder="e.g. 38"
+                       required />
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prev_exam_score">Previous Exam Score</label>
+                <span class="field-hint">Score in the previous exam (0–100)</span>
+                <input type="number" id="prev_exam_score" name="prev_exam_score"
+                       min="0" max="100" step="0.1" placeholder="e.g. 65"
+                       required />
+              </div>
+              <div class="form-group">
+                <label for="assignment_completion">Assignment Completion (%)</label>
+                <span class="field-hint">Percentage of assignments completed (0–100)</span>
+                <input type="number" id="assignment_completion" name="assignment_completion"
+                       min="0" max="100" step="1" placeholder="e.g. 90"
+                       required />
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="participation_level">Class Participation Level</label>
+                <span class="field-hint">Select Low, Medium, or High</span>
+                <select id="participation_level" name="participation_level" required>
+                  <option value="" disabled selected>Select participation level</option>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="num_backlogs">Number of Backlogs</label>
+                <span class="field-hint">Number of pending/failed subjects (0–5)</span>
+                <input type="number" id="num_backlogs" name="num_backlogs"
+                       min="0" max="5" step="1" placeholder="e.g. 0"
+                       required />
+              </div>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="form-error" class="form-error" role="alert" hidden></div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button type="submit" id="predict-btn" class="btn btn-primary">
+                <span class="btn-icon" aria-hidden="true">🔍</span> Predict Performance
+              </button>
+              <button type="button" id="reset-btn" class="btn btn-secondary">
+                <span class="btn-icon" aria-hidden="true">↺</span> Reset
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- ─── Results Panel ───────────────────────────── -->
+        <section id="results-section" class="results-section" aria-live="polite" hidden>
+
+          <!-- Loading Spinner -->
+          <div id="loading-state" class="loading-card glass-card" hidden>
+            <div class="loading-inner">
+              <div class="spinner-ring" aria-hidden="true">
+                <div class="spinner-inner"></div>
+              </div>
+              <p class="loading-text">Analysing academic profile…</p>
+              <p class="loading-sub">Running Decision Tree models</p>
+            </div>
+          </div>
+
+          <!-- Error Display -->
+          <div id="api-error" class="glass-card error-card" hidden>
+            <div class="error-icon" aria-hidden="true">⚠</div>
+            <h3 class="error-title">Connection Error</h3>
+            <p id="api-error-msg" class="error-msg"></p>
+            <p class="error-tip">Make sure the Flask server is running:
+              <code>cd backend &amp;&amp; python app.py</code>
+            </p>
+          </div>
+
+          <!-- Prediction Results -->
+          <div id="result-content" hidden>
+
+            <!-- Score + Category Row -->
+            <div class="result-top-row">
+
+              <!-- Predicted Score -->
+              <div class="glass-card score-card">
+                <div class="card-header">
+                  <div class="card-header-icon" aria-hidden="true">🎯</div>
+                  <h3 class="card-title">Predicted Score</h3>
+                </div>
+                <div class="score-display">
+                  <div class="score-ring-wrapper">
+                    <svg class="score-ring" viewBox="0 0 120 120" aria-label="Score ring">
+                      <circle class="ring-bg"   cx="60" cy="60" r="50" />
+                      <circle class="ring-fill" cx="60" cy="60" r="50" id="ring-fill" />
+                    </svg>
+                    <span class="score-number" id="score-number" aria-live="polite">--</span>
+                  </div>
+                  <span class="score-label">out of 100</span>
+                </div>
+              </div>
+
+              <!-- Performance Category -->
+              <div class="glass-card category-card">
+                <div class="card-header">
+                  <div class="card-header-icon" aria-hidden="true">🏷️</div>
+                  <h3 class="card-title">Performance Category</h3>
+                </div>
+                <div class="category-display">
+                  <div id="category-badge" class="category-badge">--</div>
+                  <p id="category-desc" class="category-desc"></p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Confidence -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div class="card-header-icon" aria-hidden="true">📊</div>
+                <div>
+                  <h3 class="card-title">Classification Confidence</h3>
+                  <p class="card-subtitle">Probability assigned to each category by the Decision Tree Classifier.</p>
+                </div>
+              </div>
+              <div id="confidence-bars" class="confidence-bars"></div>
+            </div>
+
+            <!-- Feature Importance -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div class="card-header-icon" aria-hidden="true">📈</div>
+                <div>
+                  <h3 class="card-title">Feature Importance</h3>
+                  <p class="card-subtitle">Relative influence of each input on the prediction (averaged across both models).</p>
+                </div>
+              </div>
+              <div id="importance-bars" class="importance-bars"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div class="card-header-icon" aria-hidden="true">💡</div>
+                <div>
+                  <h3 class="card-title">Personalised Recommendations</h3>
+                  <p class="card-subtitle">Suggestions based on your specific academic profile.</p>
+                </div>
+              </div>
+              <ul id="recommendations-list" class="recommendations-list"></ul>
+            </div>
+
+            <!-- Disclaimer (within results) -->
+            <div class="disclaimer">
+              <strong>⚠ Educational Disclaimer:</strong> EduPredict AI is an educational
+              demonstration project and should not be used as an official academic assessment.
+              Predictions are based on synthetic training data only.
+            </div>
+
+          </div><!-- /result-content -->
+        </section><!-- /results-section -->
+
+      </div><!-- /predict-grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       HOW IT WORKS SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section id="how-it-works" class="page-section section how-section" data-page="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Workflow</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">
+          The EduPredict AI pipeline takes raw academic data and transforms it into
+          actionable insights in four steps.
+        </p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card glass-card reveal">
+          <div class="step-number">01</div>
+          <div class="step-icon" aria-hidden="true">📝</div>
+          <h3 class="step-title">Enter Academic Details</h3>
+          <p class="step-desc">
+            Student enters academic information including attendance, study hours,
+            assignment scores, internal marks, exam scores, and participation level.
+          </p>
+        </div>
+        <div class="step-connector" aria-hidden="true"><div class="connector-line"></div></div>
+        <div class="step-card glass-card reveal" style="--delay:.1s">
+          <div class="step-number">02</div>
+          <div class="step-icon" aria-hidden="true">🧠</div>
+          <h3 class="step-title">ML Analysis</h3>
+          <p class="step-desc">
+            The trained supervised-learning models analyse the input. Both the
+            classifier and regressor process the feature vector simultaneously.
+          </p>
+        </div>
+        <div class="step-connector" aria-hidden="true"><div class="connector-line"></div></div>
+        <div class="step-card glass-card reveal" style="--delay:.2s">
+          <div class="step-number">03</div>
+          <div class="step-icon" aria-hidden="true">🎯</div>
+          <h3 class="step-title">Performance Prediction</h3>
+          <p class="step-desc">
+            Decision Tree models estimate the student's score and performance category
+            (Excellent, Good, Average, or Needs Improvement) with confidence scores.
+          </p>
+        </div>
+        <div class="step-connector" aria-hidden="true"><div class="connector-line"></div></div>
+        <div class="step-card glass-card reveal" style="--delay:.3s">
+          <div class="step-number">04</div>
+          <div class="step-icon" aria-hidden="true">💡</div>
+          <h3 class="step-title">Personalised Guidance</h3>
+          <p class="step-desc">
+            The system generates targeted recommendations based on the student's
+            weaker areas, helping them focus efforts for maximum improvement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       ABOUT SECTION
+  ═══════════════════════════════════════════════════ -->
+  <section id="about" class="page-section section about-section" data-page="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Project</div>
+        <h2 class="section-title">About EduPredict AI</h2>
+        <p class="section-desc">
+          EduPredict AI demonstrates applied machine learning for educational analytics —
+          built as part of the IBM SkillsBuild + AICTE 6-Week ML &amp; Applied AI Internship.
+          It uses supervised learning models trained on student academic data to deliver
+          data-driven performance insights.
+        </p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card glass-card reveal">
+          <div class="about-card-icon" aria-hidden="true">🌳</div>
+          <h3 class="about-card-title">Decision Tree Classifier</h3>
+          <p class="about-card-desc">
+            Predicts the student's performance category — Excellent, Good, Average,
+            or Needs Improvement — along with classification confidence probabilities.
+          </p>
+        </div>
+        <div class="about-card glass-card reveal" style="--delay:.05s">
+          <div class="about-card-icon" aria-hidden="true">📉</div>
+          <h3 class="about-card-title">Decision Tree Regressor</h3>
+          <p class="about-card-desc">
+            Estimates the numerical performance score on a 0–100 scale, providing a
+            precise quantitative measure of expected academic performance.
+          </p>
+        </div>
+        <div class="about-card glass-card reveal" style="--delay:.1s">
+          <div class="about-card-icon" aria-hidden="true">🐍</div>
+          <h3 class="about-card-title">Python + scikit-learn</h3>
+          <p class="about-card-desc">
+            The ML pipeline is developed in Python using scikit-learn for model
+            training, evaluation, and serialisation with joblib.
+          </p>
+        </div>
+        <div class="about-card glass-card reveal" style="--delay:.15s">
+          <div class="about-card-icon" aria-hidden="true">⚗️</div>
+          <h3 class="about-card-title">Flask API</h3>
+          <p class="about-card-desc">
+            A lightweight Flask REST API connects the trained ML models with the
+            web interface, exposing a clean <code>/predict</code> endpoint.
+          </p>
+        </div>
+        <div class="about-card glass-card reveal" style="--delay:.2s">
+          <div class="about-card-icon" aria-hidden="true">🎓</div>
+          <h3 class="about-card-title">IBM SkillsBuild + AICTE</h3>
+          <p class="about-card-desc">
+            Developed as part of the 6-Week ML &amp; Applied AI Internship program,
+            demonstrating real-world ML application development skills.
+          </p>
+        </div>
+      </div>
+      <!-- Disclaimer + Footer inside About section -->
+      <div class="disclaimer-section" aria-label="Educational project disclaimer">
+        <div class="disclaimer-banner glass-card">
+          <div class="disclaimer-badge">Educational Project</div>
+          <p>
+            EduPredict AI is developed for educational and demonstration purposes.
+            Predictions should not be considered an official academic assessment.
+            The models are trained on synthetically generated data.
+          </p>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <span class="nav-brand-icon" aria-hidden="true">◈</span>
+            EduPredict <span class="nav-brand-accent">AI</span>
+          </div>
+          <p class="footer-line">Machine Learning &amp; Applied AI Project</p>
+          <p class="footer-sub">IBM SkillsBuild + AICTE 6-Week ML &amp; Applied AI Internship</p>
+          <p class="footer-copy">Built with Python · scikit-learn · Flask · Vanilla JS</p>
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  </div><!-- /#app-viewport -->
+
+  <script src="script.js"></script>
+</body>
+</html>
