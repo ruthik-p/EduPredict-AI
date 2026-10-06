@@ -18,8 +18,7 @@
 "use strict";
 
 /* ── API Config ─────────────────────────────────────────────── */
-const API_URL = "http://127.0.0.1:5000/predict";
-
+const API_URL = "https://edupredict-ai-whsa.onrender.com/predict";
 /* ── Category metadata ──────────────────────────────────────── */
 const CATEGORY_META = {
   "Excellent": {
